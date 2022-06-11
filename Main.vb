@@ -6,6 +6,11 @@ Sub Main()
     Call Main()
 End Sub
 
+Sub DeleteRowsRange(firstRow As Long, lastRow As Long)
+    Rows(firstRow & ":" & lastRow).Select
+    Selection.Delete Shift:=xlUp
+End Sub
+
 Sub FormulaToColumn(firstRow As Long, lastRow As Long, colName As String, formul As String)
     Range(colName & firstRow).Formula = formul
     Range(colName & firstRow).AutoFill Destination:=Range(colName & firstRow & ":" & colName & lastRow)
