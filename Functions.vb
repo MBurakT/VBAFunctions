@@ -31,7 +31,7 @@ Function DeleteRows(ByVal counter As Long, lastRow As Long) As Long
             counter = counter + 1
         End If
     Wend
-    DeleteRowsB = lastRow
+    DeleteRows = lastRow
 End Function
 
 Sub CreateColumn(colName As String, colHead As String)
