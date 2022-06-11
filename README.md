@@ -4,7 +4,7 @@ Sub Main()
     Dim firstRow As Long: firstRow = 2
     Dim lastRow As Long: lastRow = Cells(Rows.Count, "A").End(xlUp).row - 1
     Dim formul As String: formul = "=A2&C2"
-    lastRow = DeleteRowsB(firstRow, lastRow)
+    lastRow = DeleteRows(firstRow, lastRow)
     Call Main()
 End Sub
 
