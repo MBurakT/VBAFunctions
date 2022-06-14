@@ -3,7 +3,8 @@ Sub Main()
     Dim lastRow As Long: lastRow = Cells(Rows.Count, "A").End(xlUp).row - 1
     Dim formul As String: formul = "=A2&C2"
     lastRow = DeleteRows(firstRow, lastRow)
-    Call Main()
+Function 'without parameter
+Call Function("with parameter")
 End Sub
 
 Sub DeleteRowsRange(firstRow As Long, lastRow As Long)
