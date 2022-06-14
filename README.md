@@ -5,8 +5,21 @@ Sub Main()
     Dim lastRow As Long: lastRow = Cells(Rows.Count, "A").End(xlUp).row - 1
     Dim formul As String: formul = "=A2&C2"
     lastRow = DeleteRows(firstRow, lastRow)
-    Call Main()
+    Function 'without parameter
+    Call Function("with parameter")
 End Sub
+
+Function DeleteRows(ByVal counter As Long, lastRow As Long) As Long 'ByRef
+    While (counter <= lastRow)
+        If Mid(Cells(counter, 2), 1, 3) = "***" Or Mid(Cells(counter, 2), 1, 3) = "Ref" Then
+            Rows(counter).Delete
+            lastRow = lastRow - 1
+        Else
+            counter = counter + 1
+        End If
+    Wend
+    DeleteRows = lastRow
+End Function
 
 Sub DeleteRowsRange(firstRow As Long, lastRow As Long)
     Rows(firstRow & ":" & lastRow).Select
@@ -24,22 +37,10 @@ Sub KillFormulas(firstRow As Long, lastRow As Long, firstCol As String, lastCol 
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks:=False, Transpose:=False
 End Sub
 
-Function DeleteRows(ByVal counter As Long, lastRow As Long) As Long
-    While (counter <= lastRow)
-        If Mid(Cells(counter, 2), 1, 3) = "***" Or Mid(Cells(counter, 2), 1, 3) = "Ref" Then
-            Rows(counter).Delete
-            lastRow = lastRow - 1
-        Else
-            counter = counter + 1
-        End If
-    Wend
-    DeleteRows = lastRow
-End Function
-
-Sub CreateColumn(colName As String, colHead As String)
+Sub CreateColumnWithHeader(colName As String, colHead As String, position As Long)
     Columns(colName & ":" & colName).Select
     Selection.Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
-    Range(colName & "1").Select
+    Range(colName & position).Select
     ActiveCell.FormulaR1C1 = colHead
 End Sub
         
@@ -67,9 +68,8 @@ Sub CopyColumn(firstCol As String, lastCol As String, targetCol As String)
     Selection.Insert Shift:=xlToRight
 End Sub
                     
-Sub ChangeColumnHead(colName As String, colHead As String)
-    Range(colName & "1").Select
+Sub ChangeColumnHead(colName As String, colHead As String, position as Long)
+    Range(colName & position).Select
     ActiveCell.FormulaR1C1 = colHead
 End Sub
-
 ```
