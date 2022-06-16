@@ -3,6 +3,7 @@
 Sub Main()
     Dim firstRow As Long: firstRow = 2
     Dim lastRow As Long: lastRow = Cells(Rows.Count, "A").End(xlUp).row - 1
+    Dim colCount As Long: colCount = Cells(firstRow, Columns.Count).End(xlToLeft).Column
     Dim formul As String: formul = "=A2&C2"
     lastRow = DeleteRows(firstRow, lastRow)
     Function 'without parameter
@@ -71,5 +72,39 @@ End Sub
 Sub ChangeColumnHead(colName As String, colHead As String, position as Long)
     Range(colName & position).Select
     ActiveCell.FormulaR1C1 = colHead
+End Sub
+       
+Sub CreatePivot(pivotTable As String, sheetName As String, firstRow As Long, lastRow As Long, colCount As Long)
+    Sheets("Sheet1").Select
+    Application.CutCopyMode = False
+    Sheets.Add.Name = sheetName
+    ActiveWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:= _
+        "Sheet1!R" & firstRow & "C" & firstRow & ":R" & lastRow & "C" & colCount, Version:=6).CreatePivotTable TableDestination:= _
+        "'" & sheetName & "'!R3C1", TableName:=pivotTable, DefaultVersion:=6
+    Sheets(sheetName).Select
+    Cells(3, 1).Select
+    With ActiveSheet.PivotTables(pivotTable).PivotCache
+        .RefreshOnFileOpen = False
+        .MissingItemsLimit = xlMissingItemsDefault
+    End With
+    ActiveSheet.PivotTables(pivotTable).RepeatAllLabels xlRepeatLabels
+End Sub
+
+Sub AddToPivotRows(pivotTable As String, colName As String, colPosition As Integer)
+    With ActiveSheet.PivotTables(pivotTable).PivotFields(colName)
+        .Orientation = xlRowField
+        .Position = colPosition
+    End With
+End Sub
+                                    
+Sub ValuesFilter(pivotTable As String, colName As String, showName As String)
+    ActiveSheet.PivotTables(pivotTable).AddDataField ActiveSheet.PivotTables( _
+        pivotTable).PivotFields(colName), showName, xlSum
+End Sub
+                                    
+Sub FieldSettings(pivotTable As String, colName As String)
+    ActiveSheet.PivotTables(pivotTable).PivotFields(colName).Subtotals = Array(False, _
+        False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables(pivotTable).PivotFields(colName).LayoutForm = xlTabular
 End Sub
 ```
