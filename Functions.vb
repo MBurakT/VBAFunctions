@@ -72,12 +72,12 @@ Sub ChangeColumnHead(colName As String, colHead As String, position as Long)
     ActiveCell.FormulaR1C1 = colHead
 End Sub
        
-Sub CreatePivot(pivotTable As String, sheetName As String, mainSheetName As String, firstRow As Long, lastRow As Long, colCount As Long)
-    Sheets(mainSheetName).Select
+Sub CreatePivot(pivotTable As String, sheetName As String, firstRow As Long, lastRow As Long, colCount As Long)
+    Sheets("Sheet1").Select
     Application.CutCopyMode = False
     Sheets.Add.Name = sheetName
     ActiveWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:= _
-        "'" & mainSheetName & "'!R" & firstRow & "C1:R" & lastRow & "C" & colCount, Version:=6).CreatePivotTable TableDestination:= _
+        "Sheet1!R" & firstRow & "C" & firstRow & ":R" & lastRow & "C" & colCount, Version:=6).CreatePivotTable TableDestination:= _
         "'" & sheetName & "'!R3C1", TableName:=pivotTable, DefaultVersion:=6
     Sheets(sheetName).Select
     Cells(3, 1).Select
