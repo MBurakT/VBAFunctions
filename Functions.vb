@@ -70,3 +70,21 @@ Sub ChangeColumnHead(colName As String, colHead As String, position as Long)
     Range(colName & position).Select
     ActiveCell.FormulaR1C1 = colHead
 End Sub
+                                    
+Sub AddToPivotRows(pivotTable As String, colName As String, colPosition As Integer)
+    With ActiveSheet.PivotTables(pivotTable).PivotFields(colName)
+        .Orientation = xlRowField
+        .Position = colPosition
+    End With
+End Sub
+                                    
+Sub ValuesFilter(pivotTable As String, colName As String, showName As String)
+    ActiveSheet.PivotTables(pivotTable).AddDataField ActiveSheet.PivotTables( _
+        pivotTable).PivotFields(colName), showName, xlSum
+End Sub
+                                    
+Sub FieldSettings(pivotTable As String, colName As String)
+    ActiveSheet.PivotTables(pivotTable).PivotFields(colName).Subtotals = Array(False, _
+        False, False, False, False, False, False, False, False, False, False, False)
+    ActiveSheet.PivotTables(pivotTable).PivotFields(colName).LayoutForm = xlTabular
+End Sub
