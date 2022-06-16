@@ -1,5 +1,4 @@
 # Visual Basic For Applications
-How to declare variables and call functions
 ```vb
 Sub Main()
     Dim firstRow As Long: firstRow = 2
@@ -11,7 +10,6 @@ Sub Main()
     Call Function("with parameter")
 End Sub
 ```
-Delete rows based on cell value
 ```vb
 Function DeleteRows(ByVal counter As Long, lastRow As Long) As Long 'ByRef
     While (counter <= lastRow)
@@ -25,14 +23,12 @@ Function DeleteRows(ByVal counter As Long, lastRow As Long) As Long 'ByRef
     DeleteRows = lastRow
 End Function
 ```
-Delete specific range of row
 ```vb
 Sub DeleteRowsRange(firstRow As Long, lastRow As Long)
     Rows(firstRow & ":" & lastRow).Select
     Selection.Delete Shift:=xlUp
 End Sub
 ```
-Clear context of specific cells
 ```vb
 Sub ClearCell(firstRow As Long, lastRow As Long, colName As String)
     For Each r In Range(colName & firstRow & ":" & colName & lastRow)
@@ -44,7 +40,6 @@ Sub ClearCell(firstRow As Long, lastRow As Long, colName As String)
     Next
 End Sub
 ```
-Create column with header
 ```vb
 Sub CreateColumnWithHeader(colName As String, colHead As String, position As Long)
     Columns(colName & ":" & colName).Select
@@ -53,7 +48,6 @@ Sub CreateColumnWithHeader(colName As String, colHead As String, position As Lon
     ActiveCell.FormulaR1C1 = colHead
 End Sub
 ```
-Change column ordinal
 ```vb
 Sub ChangeColumnOrdinal(currentPosition As String, targetPosition As String)
     Columns(currentPosition & ":" & currentPosition).Select
@@ -62,7 +56,6 @@ Sub ChangeColumnOrdinal(currentPosition As String, targetPosition As String)
     Selection.Insert Shift:=xlToRight
 End Sub
 ```
-Copy and paste column
 ```vb    
 Sub CopyColumn(firstCol As String, lastCol As String, targetCol As String)
     Columns(firstCol & ":" & lastCol).Select
@@ -71,21 +64,18 @@ Sub CopyColumn(firstCol As String, lastCol As String, targetCol As String)
     Selection.Insert Shift:=xlToRight
 End Sub
 ```
-Change column caption
 ```vb         
 Sub ChangeColumnHead(colName As String, colHead As String, position as Long)
     Range(colName & position).Select
     ActiveCell.FormulaR1C1 = colHead
 End Sub
 ```
-Apply formula to column
 ```vb                 
 Sub FormulaToColumn(firstRow As Long, lastRow As Long, colName As String, formul As String)
     Range(colName & firstRow).Formula = formul
     Range(colName & firstRow).AutoFill Destination:=Range(colName & firstRow & ":" & colName & lastRow)
 End Sub
 ```
-Kill formula of specific range
 ```vb
 Sub KillFormulas(firstRow As Long, lastRow As Long, firstCol As String, lastCol As String)
     Range(firstCol & firstRow & ":" & lastCol & lastRow).Select
@@ -93,7 +83,6 @@ Sub KillFormulas(firstRow As Long, lastRow As Long, firstCol As String, lastCol 
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks:=False, Transpose:=False
 End Sub
 ```
-Create pivot
 ```vb
 Sub CreatePivot(pivotTable As String, sheetName As String, mainSheetName As String, firstRow As Long, lastRow As Long, colCount As Long)
     Sheets(mainSheetName).Select
@@ -111,7 +100,6 @@ Sub CreatePivot(pivotTable As String, sheetName As String, mainSheetName As Stri
     ActiveSheet.PivotTables(pivotTable).RepeatAllLabels xlRepeatLabels
 End Sub
 ```
-Add row to pivot rows field
 ```vb
 Sub AddToPivotRows(pivotTable As String, colName As String, colPosition As Integer)
     With ActiveSheet.PivotTables(pivotTable).PivotFields(colName)
@@ -120,7 +108,6 @@ Sub AddToPivotRows(pivotTable As String, colName As String, colPosition As Integ
     End With
 End Sub
 ```
-Set row property
 ```vb                                                         
 Sub FieldSettings(pivotTable As String, colName As String)
     ActiveSheet.PivotTables(pivotTable).PivotFields(colName).Subtotals = Array(False, _
@@ -128,7 +115,6 @@ Sub FieldSettings(pivotTable As String, colName As String)
     ActiveSheet.PivotTables(pivotTable).PivotFields(colName).LayoutForm = xlTabular
 End Sub
 ```
-Add row to pivot values field
 ```vb                        
 Sub ValuesFilter(pivotTable As String, colName As String, showName As String)
     ActiveSheet.PivotTables(pivotTable).AddDataField ActiveSheet.PivotTables( _
