@@ -9,7 +9,8 @@ Sub Main()
     Function 'without parameter
     Call Function("with parameter")
 End Sub
-
+'''
+```vb
 Function DeleteRows(ByVal counter As Long, lastRow As Long) As Long 'ByRef
     While (counter <= lastRow)
         If Mid(Cells(counter, 2), 1, 3) = "***" Or Mid(Cells(counter, 2), 1, 3) = "Ref" Then
@@ -21,12 +22,14 @@ Function DeleteRows(ByVal counter As Long, lastRow As Long) As Long 'ByRef
     Wend
     DeleteRows = lastRow
 End Function
-
+'''
+```vb
 Sub DeleteRowsRange(firstRow As Long, lastRow As Long)
     Rows(firstRow & ":" & lastRow).Select
     Selection.Delete Shift:=xlUp
 End Sub
-
+'''
+```vb
 Sub ClearCell(firstRow As Long, lastRow As Long, colName As String)
     For Each r In Range(colName & firstRow & ":" & colName & lastRow)
         If r.Text = "#N/A" Or r.Text = "#DIV/0!" Then
@@ -36,44 +39,51 @@ Sub ClearCell(firstRow As Long, lastRow As Long, colName As String)
         End If
     Next
 End Sub
-
+'''
+```vb
 Sub CreateColumnWithHeader(colName As String, colHead As String, position As Long)
     Columns(colName & ":" & colName).Select
     Selection.Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
     Range(colName & position).Select
     ActiveCell.FormulaR1C1 = colHead
 End Sub
-
+'''
+```vb
 Sub ChangeColumnOrdinal(currentPosition As String, targetPosition As String)
     Columns(currentPosition & ":" & currentPosition).Select
     Selection.Cut
     Columns(targetPosition & ":" & targetPosition).Select
     Selection.Insert Shift:=xlToRight
 End Sub
-            
+'''
+```vb    
 Sub CopyColumn(firstCol As String, lastCol As String, targetCol As String)
     Columns(firstCol & ":" & lastCol).Select
     Selection.Copy
     Columns(targetCol & ":" & targetCol).Select
     Selection.Insert Shift:=xlToRight
 End Sub
-                    
+'''
+```vb         
 Sub ChangeColumnHead(colName As String, colHead As String, position as Long)
     Range(colName & position).Select
     ActiveCell.FormulaR1C1 = colHead
 End Sub
-                        
+'''
+```vb                 
 Sub FormulaToColumn(firstRow As Long, lastRow As Long, colName As String, formul As String)
     Range(colName & firstRow).Formula = formul
     Range(colName & firstRow).AutoFill Destination:=Range(colName & firstRow & ":" & colName & lastRow)
 End Sub
-
+'''
+```vb
 Sub KillFormulas(firstRow As Long, lastRow As Long, firstCol As String, lastCol As String)
     Range(firstCol & firstRow & ":" & lastCol & lastRow).Select
     Selection.Copy
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks:=False, Transpose:=False
 End Sub
-       
+'''
+```vb
 Sub CreatePivot(pivotTable As String, sheetName As String, mainSheetName As String, firstRow As Long, lastRow As Long, colCount As Long)
     Sheets(mainSheetName).Select
     Application.CutCopyMode = False
@@ -89,20 +99,23 @@ Sub CreatePivot(pivotTable As String, sheetName As String, mainSheetName As Stri
     End With
     ActiveSheet.PivotTables(pivotTable).RepeatAllLabels xlRepeatLabels
 End Sub
-
+'''
+```vb
 Sub AddToPivotRows(pivotTable As String, colName As String, colPosition As Integer)
     With ActiveSheet.PivotTables(pivotTable).PivotFields(colName)
         .Orientation = xlRowField
         .Position = colPosition
     End With
 End Sub
-                                                                        
+'''
+```vb                                                         
 Sub FieldSettings(pivotTable As String, colName As String)
     ActiveSheet.PivotTables(pivotTable).PivotFields(colName).Subtotals = Array(False, _
         False, False, False, False, False, False, False, False, False, False, False)
     ActiveSheet.PivotTables(pivotTable).PivotFields(colName).LayoutForm = xlTabular
 End Sub
-                                        
+'''
+```vb                        
 Sub ValuesFilter(pivotTable As String, colName As String, showName As String)
     ActiveSheet.PivotTables(pivotTable).AddDataField ActiveSheet.PivotTables( _
         pivotTable).PivotFields(colName), showName, xlSum
