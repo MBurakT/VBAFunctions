@@ -13,7 +13,7 @@ End Sub
 ```
 Delete rows based on cell value / Hücre değerine göre satır silme
 ```vb
-Function DeleteRows(ByVal counter As Long, lastRow As Long) As Long 'ByRef
+Function DeleteRows(ByVal firstRow As Long, lastRow As Long) As Long 'ByRef
     While (counter <= lastRow)
         If Mid(Cells(counter, 2), 1, 3) = "***" Or Mid(Cells(counter, 2), 1, 3) = "Ref" Then
             Rows(counter).Delete
