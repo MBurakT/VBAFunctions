@@ -8,7 +8,7 @@ Sub Main()
     Call Function("with parameter")
 End Sub
 
-Function DeleteRows(ByVal counter As Long, lastRow As Long) As Long 'ByRef
+Function DeleteRows(ByVal firstRow As Long, lastRow As Long) As Long 'ByRef
     While (counter <= lastRow)
         If Mid(Cells(counter, 2), 1, 3) = "***" Or Mid(Cells(counter, 2), 1, 3) = "Ref" Then
             Rows(counter).Delete
