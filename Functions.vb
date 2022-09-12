@@ -1,4 +1,6 @@
 Sub Main()
+    On Error GoTo toEnd
+    
     Dim firstRow As Long: firstRow = 2
     Dim lastRow As Long: lastRow = Cells(Rows.Count, "A").End(xlUp).row - 1
     Dim colCount As Long: colCount = Cells(firstRow, Columns.Count).End(xlToLeft).Column
@@ -6,6 +8,8 @@ Sub Main()
     lastRow = DeleteRows(firstRow, lastRow)
     Function 'without parameter
     Call Function("with parameter")
+
+toEnd:
 End Sub
 
 Function DeleteRows(ByVal firstRow As Long, lastRow As Long) As Long 'ByRef
