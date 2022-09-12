@@ -10,6 +10,7 @@ Sub Main()
     lastRow = DeleteRows(firstRow, lastRow)
     Function 'without parameter
     Call Function("with parameter")
+    
 toEnd:
 End Sub
 ```
