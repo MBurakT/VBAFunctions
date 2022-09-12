@@ -6,8 +6,8 @@ Sub Main()
     Dim colCount As Long: colCount = Cells(firstRow, Columns.Count).End(xlToLeft).Column
     Dim formul As String: formul = "=A2&C2"
     lastRow = DeleteRows(firstRow, lastRow)
-    Function 'without parameter
-    Call Function("with parameter")
+    FunctionName 'without parameter
+    Call FunctionName("with parameter")
 
 toEnd:
 End Sub
