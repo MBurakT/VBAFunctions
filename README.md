@@ -1,4 +1,4 @@
-# Visual Basic For Applications (VBA)
+# VBA Functions
 ```vb
 Sub Main()
     On Error GoTo toEnd
