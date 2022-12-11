@@ -6,7 +6,7 @@ Sub Main()
     Dim colCount As Long: colCount = Cells(firstRow, Columns.Count).End(xlToLeft).Column
     Dim colOrdinal As Long: colOrdinal = 2
     Dim formul As String: formul = "=A2&C2"
-    lastRow = DeleteRows(firstRow, lastRow,)
+    lastRow = DeleteRows(firstRow, lastRow, colOrdinal)
     FunctionName 'without parameter
     Call FunctionName("with parameter")
 
