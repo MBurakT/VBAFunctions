@@ -8,7 +8,7 @@ Sub Main()
     Dim colCount As Long: colCount = Cells(firstRow, Columns.Count).End(xlToLeft).Column
     Dim colOrdinal As Long: colOrdinal = 2
     Dim formul As String: formul = "=A2&C2"
-    lastRow = DeleteRows(firstRow, lastRow, colOrdinal)
+    lastRow = DeleteRowsBaseOnCellValues(firstRow, lastRow, colOrdinal)
     FunctionName 'without parameter
     Call FunctionName("with parameter")
     
@@ -16,7 +16,7 @@ toEnd:
 End Sub
 ```
 ```vb
-Function DeleteRowsBaseOnCellValue(ByVal firstRow As Long, lastRow As Long, colOrdinal As Long) As Long 'ByRef
+Function DeleteRowsBaseOnCellValues(ByVal firstRow As Long, lastRow As Long, colOrdinal As Long) As Long 'ByRef
     While (firstRow <= lastRow)
         If Mid(Cells(firstRow, colOrdinal), 1, 3) = "***" Or Mid(Cells(firstRow, colOrdinal), 1, 3) = "Ref" Then
             Rows(firstRow).Delete
