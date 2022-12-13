@@ -25,7 +25,7 @@ Function DeleteRowsBaseOnCellValues(ByVal firstRow As Long, lastRow As Long, col
             firstRow = firstRow + 1
         End If
     Wend
-    DeleteRows = lastRow
+    DeleteRowsBaseOnCellValues = lastRow
 End Function
 ```
 ```vb
