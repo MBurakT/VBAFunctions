@@ -68,7 +68,9 @@ End Sub
                         
 Sub FormulaToColumn(firstRow As Long, lastRow As Long, colName As String, formul As String)
     Range(colName & firstRow).Formula = formul
-    Range(colName & firstRow).AutoFill Destination:=Range(colName & firstRow & ":" & colName & lastRow)
+    If lastRow > firstRow Then
+        Range(colName & firstRow).AutoFill Destination:=Range(colName & firstRow & ":" & colName & lastRow)
+    End If
 End Sub
 
 Sub KillFormulas(firstRow As Long, lastRow As Long, firstCol As String, lastCol As String)
