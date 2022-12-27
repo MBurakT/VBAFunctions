@@ -75,10 +75,12 @@ Sub ChangeColumnHead(colName As String, colHead As String, position as Long)
     ActiveCell.FormulaR1C1 = colHead
 End Sub
 ```
-```vb                 
+```vb
 Sub FormulaToColumn(firstRow As Long, lastRow As Long, colName As String, formul As String)
     Range(colName & firstRow).Formula = formul
-    Range(colName & firstRow).AutoFill Destination:=Range(colName & firstRow & ":" & colName & lastRow)
+    If lastRow > firstRow Then
+        Range(colName & firstRow).AutoFill Destination:=Range(colName & firstRow & ":" & colName & lastRow)
+    End If
 End Sub
 ```
 ```vb
