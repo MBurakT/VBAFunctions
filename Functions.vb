@@ -84,8 +84,8 @@ Sub CreatePivot(pivotTable As String, sheetName As String, mainSheetName As Stri
     Application.CutCopyMode = False
     Sheets.Add.Name = sheetName
     ActiveWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:= _
-        "'" & mainSheetName & "'!R" & firstRow & "C1:R" & lastRow & "C" & colCount, Version:=6).CreatePivotTable TableDestination:= _
-        "'" & sheetName & "'!R3C1", TableName:=pivotTable, DefaultVersion:=6
+        "'" & mainSheetName & "'!R" & firstRow & "C1:R" & lastRow & "C" & colCount, Version:=6).CreatePivotTable _
+        TableDestination:= "'" & sheetName & "'!R3C1", TableName:=pivotTable, DefaultVersion:=6
     Sheets(sheetName).Select
     Cells(3, 1).Select
     With ActiveSheet.PivotTables(pivotTable).PivotCache
