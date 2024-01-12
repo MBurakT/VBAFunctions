@@ -13,7 +13,7 @@ Sub Main()
 toEnd:
 End Sub
 
-Function DeleteRowsBaseOnCellValues(ByVal firstRow As Long, lastRow As Long, colOrdinal As Long) As Long 'ByRef
+Function DeleteRowsBaseOnCellValues(ByVal firstRow As Long, ByVal lastRow As Long, ByVal colOrdinal As Long) As Long 'ByRef default
     While (firstRow <= lastRow)
         If Mid(Cells(firstRow, colOrdinal), 1, 3) = "***" Or Mid(Cells(firstRow, colOrdinal), 1, 3) = "Ref" Then
             Rows(firstRow).Delete
